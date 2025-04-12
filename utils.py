@@ -4,7 +4,7 @@ from tensorflow.keras.models import load_model
 
 scaler = joblib.load("scaler.pkl")
 rf_model = joblib.load("random_forest.pkl")
-autoencoder = load_model("autoencoder.h5")
+autoencoder = load_model("autoencoder.h5", compile=False)
 
 THRESHOLD = 0.01  # tune this based on validation loss
 
