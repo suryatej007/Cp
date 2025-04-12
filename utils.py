@@ -22,7 +22,7 @@ def predict_combined(scaled_input):
         "threshold": threshold
     }
 
-    if recon_error > threshold and rf_pred == 1:
+    if recon_error > threshold or rf_pred == 1:
         result = "Attack Detected"
     else:
         result = "Normal Traffic"
