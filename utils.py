@@ -16,7 +16,7 @@ def predict_combined(scaled_input):
     recon = autoencoder.predict(scaled_input)
     recon_error = np.mean(np.square(scaled_input - recon))  # Renaming 'error' to 'recon_error'
     
-    if recon_error > threshold or rf_pred == 1:
+    if recon_error > threshold and rf_pred == 1:
         return "Attack Detected"
     else:
         return "Normal Traffic"
