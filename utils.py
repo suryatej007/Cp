@@ -4,8 +4,7 @@ from tensorflow.keras.models import load_model
 
 scaler = joblib.load("scaler.pkl")
 rf_model = joblib.load("random_forest.pkl")
-autoencoder = load_model("autoencoder.h5", compile=False)
-
+autoencoder = load_model("autoencoder.keras")
 threshold = joblib.load("autoencoder_threshold.pkl")
 
 def preprocess_input(user_input):
@@ -16,7 +15,7 @@ def predict_combined(scaled_input):
     rf_pred = rf_model.predict(scaled_input)[0]
     recon = autoencoder.predict(scaled_input)
     error = np.mean(np.square(scaled_input - recon))
-    if recon > threshold or rf_pred == 1:
+    if rf_pred == 1 or error > threshold:
         return "Attack Detected"
     else:
         return "Normal Traffic"
