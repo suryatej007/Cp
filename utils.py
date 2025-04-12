@@ -4,7 +4,7 @@ from tensorflow.keras.models import load_model
 
 scaler = joblib.load("scaler.pkl")
 rf_model = joblib.load("random_forest.pkl")
-autoencoder = load_model("autoencoder.keras")
+autoencoder = load_model("autoencoder.h5")
 threshold = joblib.load("autoencoder_threshold.pkl")
 
 def preprocess_input(user_input):
